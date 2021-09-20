@@ -23,7 +23,7 @@ linkedList_t * make_linkedList (int verbose) {
   return reVal;
 }
 
-// ......................................................................... //
+// .......................................................................... //
 
 void free_linkedList(linkedList_t * list) {
   while (list->size) {
@@ -43,7 +43,7 @@ listElement_t * get_linkedList_element(linkedList_t * list, int index) {
   }
   
   listElement_t * element = list->first;
-  for (int i=0; i<index; i++) {
+  for (int i=0; i<index; ++i) {
     element = element->next;
   }
   
@@ -72,17 +72,20 @@ int delete_from_linkedList(linkedList_t * list, int index) {
   }
   
   next = self->next;
-  if (prev) {prev->next = next;}
+  if (prev) {prev->next  = next;}
+  else      {list->first = next;}
   
   if (list->memoryAutoManaged) {free(self->data);}
   free(self);
   
-  return --list->size;
+  return --(list->size);
 }
+
+// .......................................................................... //
 
 int add_to_linkedList(linkedList_t * list, int index, void * newData, size_t bytes) {
   if (index < 0 || index > list->size) {
-    printf("Fehler: ungültiger Index\n");
+    if (list->verbose) {printf("Fehler: ungültiger Index\n");}
     return -1;
   }
   
@@ -91,14 +94,14 @@ int add_to_linkedList(linkedList_t * list, int index, void * newData, size_t byt
   
   self = malloc(sizeof(*self));
   if (!self) {
-    printf("Fehler: Speicher konnte nicht alloziert werden\n");
+    if (list->verbose) {printf("Fehler: Speicher konnte nicht alloziert werden\n");}
     return -1;
   }
   
   if (list->memoryAutoManaged) {
     self->data = malloc(bytes);
     if (!self->data) {
-      printf("Fehler: Speicher konnte nicht alloziert werden\n");
+      if (list->verbose) {printf("Fehler: Speicher konnte nicht alloziert werden\n");}
       free(self);
       return -1;
     }
