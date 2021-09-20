@@ -4,19 +4,21 @@
 
 #include "998_linkedlist.h"
 
-// ========================================================================= //
+// ========================================================================== //
 // constructor and destructor
 
-linkedList_t * make_linkedList () {
+linkedList_t * make_linkedList (int verbose) {
   linkedList_t * reVal = malloc(sizeof(*reVal));
   if (!reVal) {
-    printf("Fehler: Speicher konnte nicht alloziert werden\n");
+    if (verbose) {printf("Fehler: Speicher konnte nicht alloziert werden\n");}
     return NULL;
   }
   
-  reVal->first        = NULL;
-  reVal->size         = 0;
-  reVal->printElement = NULL;
+  reVal->first              = NULL;
+  reVal->size               = 0;
+  reVal->verbose            = verbose;
+  reVal->memoryAutoManaged  = 0;
+  reVal->printElement       = NULL;
   
   return reVal;
 }
@@ -31,12 +33,12 @@ void free_linkedList(linkedList_t * list) {
   free(list);
 }
 
-// ========================================================================= //
+// ========================================================================== //
 // index access
 
 listElement_t * get_linkedList_element(linkedList_t * list, int index) {
   if (index < 0 || index >= list->size) {
-    printf("Fehler: ungültiger Index\n");
+    if (list->verbose) {printf("Fehler: ungültiger Index\n");}
     return NULL;
   }
   
@@ -48,12 +50,12 @@ listElement_t * get_linkedList_element(linkedList_t * list, int index) {
   return element;
 }
 
-// ========================================================================= //
+// ========================================================================== //
 // add and delete
 
 int delete_from_linkedList(linkedList_t * list, int index) {
   if (index < 0 || index >= list->size) {
-    printf("Fehler: ungültiger Index\n");
+    if (list->verbose) {printf("Fehler: ungültiger Index\n");}
     return -1;
   }
   
@@ -123,7 +125,7 @@ int add_to_linkedList(linkedList_t * list, int index, void * newData, size_t byt
   return ++list->size;
 }
 
-// ========================================================================= //
+// ========================================================================== //
 // screen output
 
 void print_all_from_linkedlist(linkedList_t * list) {

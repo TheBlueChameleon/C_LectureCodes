@@ -10,7 +10,7 @@
 
 #include "998_linkedlist.h"
 
-// ========================================================================= //
+// ========================================================================== //
 
 typedef struct {
   char   firstName [20];
@@ -28,10 +28,10 @@ void printEmployee(void * employee) {
   );
 }
 
-// ========================================================================= //
+// ========================================================================== //
 
 int main () {
-  linkedList_t * list = make_linkedList();
+  linkedList_t * list = make_linkedList(1);                                     // verbose mode
   
   list->memoryAutoManaged = 0;
   list->printElement = printEmployee;

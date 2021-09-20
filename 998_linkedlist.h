@@ -10,11 +10,12 @@ typedef struct {
   listElement_t * first;
   int             size;
   
+  int             verbose;
   int             memoryAutoManaged;
   void (*printElement)(void *);
 } linkedList_t;
 
-linkedList_t * make_linkedList ();
+linkedList_t * make_linkedList (int verbose);
 void           free_linkedList(linkedList_t * list);
 
 listElement_t * get_linkedList_element(linkedList_t * list, int index);
