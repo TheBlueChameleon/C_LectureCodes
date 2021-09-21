@@ -1,14 +1,14 @@
 /* F0X_main.c
  * compile with the following line
  * 
- * gcc -std=c11 -Wall -Wpedantic -Wimplicit-fallthrough 998_main.c 998_linkedlist.c -lm -o linkedlist
+ * gcc -std=c11 -Wall -Wpedantic -Wimplicit-fallthrough 010_main.c 010_linkedlist.c -lm -o linkedlist
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "998_linkedlist.h"
+#include "010_linkedlist.h"
 
 // ========================================================================== //
 

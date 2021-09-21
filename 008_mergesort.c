@@ -65,7 +65,7 @@ void mergesort_int (int * field, unsigned int elements) {
     unsigned int subfield_size = elements / 2;
 
     // sort subfields
-    mergesort_int(field                  ,          subfield_size);
+    mergesort_int(field                ,            subfield_size);
     mergesort_int(field + subfield_size, elements - subfield_size);
 
     // merge the sorted subfields:
